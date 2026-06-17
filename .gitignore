@@ -1,0 +1,53 @@
+
+
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.pyc
+*.sqlite3
+db.sqlite3
+
+# Virtual Environments
+
+env/
+venv/
+ENV/
+.venv/
+
+# Environment variables
+
+.env
+.env.*
+!.env.example
+
+# Django static & media
+
+staticfiles/
+media/
+
+# Logs
+
+*.log
+
+
+.vscode/
+.idea/
+*.swp
+*.swo
+
+.DS_Store
+Thumbs.db
+
+*.bak
+*.tmp
+
+
+.cache/
+build/
+
+
+.coverage
+htmlcov/
+pytest_cache/
+
