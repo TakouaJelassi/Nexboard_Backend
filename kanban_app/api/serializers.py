@@ -150,7 +150,9 @@ class BoardUpdateSerializer(serializers.ModelSerializer):
     def update(self, instance, validated_data):
         members_ids = validated_data.pop("members", None)
         
-        instance.title = validated_data.get("title", instance.title)
+        instance.title       = validated_data.get("title",       instance.title)
+        instance.description = validated_data.get("description", instance.description)
+        instance.color       = validated_data.get("color",       instance.color)
         instance.save()
 
         if members_ids is not None:
