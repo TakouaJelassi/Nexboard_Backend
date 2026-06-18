@@ -1,6 +1,20 @@
-# NexBoard — Backend API
+<div align="center">
 
-REST API for **NexBoard**, a modern Kanban-style project management app. Built with Django REST Framework — supports authentication, boards, tasks, assignments, and comments.
+<img src="https://nexboard-frontend.onrender.com/assets/img/logo.svg" alt="NexBoard" width="200" />
+
+REST API for **NexBoard**, a Kanban project management app built with Django REST Framework.
+
+[![License: MIT](https://img.shields.io/badge/License-MIT-7c3aed.svg)](LICENSE)
+[![Django](https://img.shields.io/badge/Django-5.1-092e20.svg)](https://www.djangoproject.com/)
+[![DRF](https://img.shields.io/badge/DRF-3.16-a30000.svg)](https://www.django-rest-framework.org/)
+
+**[Live Demo](https://nexboard-frontend.onrender.com)** &nbsp;·&nbsp; **[API Docs](https://nexboard-backend-ld7s.onrender.com/api/docs/)**
+
+> Runs on Render's free tier — may take ~30s to wake up on first request.
+
+</div>
+
+---
 
 ## Tech Stack
 
@@ -11,55 +25,26 @@ REST API for **NexBoard**, a modern Kanban-style project management app. Built w
 - drf-spectacular (OpenAPI / Swagger)
 - CORS Headers
 - WhiteNoise + Gunicorn (Production)
-- SQLite (Dev) / PostgreSQL (Prod ready)
+- SQLite
 
-## Getting Started
+---
 
-### 1. Virtual environment
-
-```bash
-python -m venv env
-env\Scripts\activate        # Windows
-# source env/bin/activate   # macOS / Linux
-```
-
-### 2. Install dependencies
+## Local Setup
 
 ```bash
+python -m venv venv
+venv\Scripts\activate          # Windows
 pip install -r requirements.txt
-```
-
-### 3. Environment variables
-
-Create a `.env` file:
-
-```env
-SECRET_KEY=your-secret-key-here
-DEBUG=True
-ALLOWED_HOSTS=127.0.0.1,localhost
-CORS_ALLOWED_ORIGINS=http://localhost:5500,http://127.0.0.1:5500
-```
-
-### 4. Run migrations
-
-```bash
+cp .env.example .env           # fill in SECRET_KEY
 python manage.py migrate
-```
-
-### 5. Start the server
-
-```bash
 python manage.py runserver
 ```
 
 API available at `http://127.0.0.1:8000/api/`
 
-## API Documentation
+---
 
-- Swagger UI: `http://127.0.0.1:8000/api/docs/`
-- OpenAPI Schema: `http://127.0.0.1:8000/api/schema/`
-
-## Endpoints
+## API Endpoints
 
 | Method | Endpoint | Description |
 |--------|----------|-------------|
@@ -70,21 +55,37 @@ API available at `http://127.0.0.1:8000/api/`
 | GET/PATCH/DELETE | `/api/boards/{id}/` | Read, update, or delete a board |
 | POST | `/api/tasks/` | Create a task |
 | GET/PATCH/DELETE | `/api/tasks/{id}/` | Read, update, or delete a task |
-| GET/POST | `/api/tasks/{id}/comments/` | List or create comments |
-| DELETE | `/api/tasks/{id}/comments/{comment_id}/` | Delete a comment |
+| GET | `/api/tasks/assigned-to-me/` | Tasks assigned to current user |
+| GET | `/api/tasks/reviewing/` | Tasks where current user is reviewer |
+
+---
 
 ## Project Structure
 
 ```
 nexboard_backend/
-├── core/              # Settings, root URLs, WSGI/ASGI
-├── kanban_app/        # Board & column logic
-├── tasks_app/         # Task & comment logic
-├── users_auth_app/    # Custom user model & auth
+├── core/               # Settings, root URLs, WSGI
+├── kanban_app/         # Board model & API
+├── tasks_app/          # Task model & API
+├── users_auth_app/     # Custom user model & auth
 ├── manage.py
-└── requirements.txt
+├── requirements.txt
+├── build.sh            # Render build script
+└── .env.example
 ```
 
-## Author
+---
 
-**Takoua Jelassi** — Full Stack Developer
+## Environment Variables
+
+See [`.env.example`](.env.example) for all required variables.
+
+---
+
+## License
+
+MIT License — see the [LICENSE](LICENSE) file for details.
+
+## Contact
+
+Takoua Jelassi — [takoua.jelassi@gmail.com](mailto:takoua.jelassi@gmail.com)
