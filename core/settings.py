@@ -90,7 +90,10 @@ WSGI_APPLICATION = 'core.wsgi.application'
 DATABASE_URL = os.getenv('DATABASE_URL')
 
 if DATABASE_URL:
-    DATABASES = {'default': dj_database_url.parse(DATABASE_URL, conn_max_age=600)}
+    parsed = dj_database_url.parse(DATABASE_URL, conn_max_age=600)
+    if not parsed.get('NAME'):
+        raise Exception(f"DATABASE_URL parsed but NAME is missing. URL starts with: {DATABASE_URL[:30]}")
+    DATABASES = {'default': parsed}
 else:
     DATABASES = {
         'default': {
