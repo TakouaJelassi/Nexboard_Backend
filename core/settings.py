@@ -5,8 +5,8 @@ Django settings for NexBoard — nexboard_backend
 import os
 from pathlib import Path
 
+import urllib.parse
 import dotenv
-import dj_database_url
 
 dotenv.load_dotenv()
 
@@ -90,10 +90,18 @@ WSGI_APPLICATION = 'core.wsgi.application'
 DATABASE_URL = os.getenv('DATABASE_URL')
 
 if DATABASE_URL:
-    parsed = dj_database_url.parse(DATABASE_URL, conn_max_age=600)
-    if not parsed.get('NAME'):
-        raise Exception(f"DATABASE_URL parsed but NAME is missing. URL starts with: {DATABASE_URL[:30]}")
-    DATABASES = {'default': parsed}
+    _db = urllib.parse.urlparse(DATABASE_URL)
+    DATABASES = {
+        'default': {
+            'ENGINE':   'django.db.backends.postgresql',
+            'NAME':     _db.path.lstrip('/'),
+            'USER':     _db.username,
+            'PASSWORD': _db.password,
+            'HOST':     _db.hostname,
+            'PORT':     _db.port or 5432,
+            'OPTIONS':  {'sslmode': 'require'},
+        }
+    }
 else:
     DATABASES = {
         'default': {
