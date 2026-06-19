@@ -25,7 +25,7 @@ REST API for **NexBoard**, a Kanban project management app built with Django RES
 - drf-spectacular (OpenAPI / Swagger)
 - CORS Headers
 - WhiteNoise + Gunicorn (Production)
-- SQLite
+- Supabase PostgreSQL
 
 ---
 
