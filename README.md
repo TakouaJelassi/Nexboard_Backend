@@ -82,10 +82,16 @@ See [`.env.example`](.env.example) for all required variables.
 
 ---
 
+## About the Project
+
+Built as the backend for a personal full-stack project. The goal was to design a clean REST API with proper authentication, relational data modeling, and production deployment — all without relying on a boilerplate or tutorial scaffold.
+
+---
+
 ## License
 
 MIT License — see the [LICENSE](LICENSE) file for details.
 
 ## Contact
 
-Takoua Jelassi — [takoua.jelassi@gmail.com](mailto:takoua.jelassi@gmail.com)
+Takoua Jelassi — [takoua.jelassi@gmail.com](mailto:takoua.jelassi@gmail.com) · [LinkedIn](https://www.linkedin.com/in/takoua-jelassi)
